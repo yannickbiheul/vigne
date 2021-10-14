@@ -20,13 +20,16 @@
 
     <div class="row justify-content-center">
         {% for article in articles %}
-            <div class="card col-md-4" style="width: 18rem; margin: 10px;">
-                <small class="date" style="color: #333;">Le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }}
-                                                        par <span class="author">{{ article.author }}<span></small>
+            <div class="card col-md-4" style="width: 25rem; margin: 10px;">
+                
                 <img src="/assets/blog/images/{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ article.title }}</h5>
-                    <a href="{{ path('show', {'id':article.id}) }}" class="btn btn-primary">En savoir plus</a>
+                    <small class="date" style="color: #333;">Le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }}
+                                                        par <span class="author">{{ article.author }}<span></small>
+                    <br>
+                    
+                    <a href="{{ path('show', {'id':article.id}) }}" class="btn btn-primary" style="margin-top: 10px;">En savoir plus</a>
                 </div>
             </div>
         {% endfor %}
