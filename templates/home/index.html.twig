@@ -4,6 +4,35 @@
 
 {% block body %}
 
+<div class="container-fluid">
 
+    <header class="row justify-content-center align-items-center" style="height: 350px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.2)50%, rgba(0, 0, 0, 0.2)50%), url(/assets/backgrounds/vigne.jpg);
+    background-size: cover;
+    background-position: center;">
+    <h1 class="text-center" style="color: #fff;">Les Amis de la Vigne</h1>
+    </header>
+
+    <div class="container">
+
+    <h2 class="text-center" style="margin: 20px 0;">Derniers articles</h2>
+    {# <hr style="width: 50%; margin: 20px auto;"> #}
+
+    <div class="row justify-content-center">
+        {% for article in articles %}
+            <div class="card col-md-4" style="width: 18rem; margin: 10px;">
+                <p class="date">Le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }}</p>
+                <img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <a href="#" class="btn btn-primary">En savoir plus</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
