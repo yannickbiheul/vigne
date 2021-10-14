@@ -21,8 +21,9 @@
     <div class="row justify-content-center">
         {% for article in articles %}
             <div class="card col-md-4" style="width: 18rem; margin: 10px;">
-                <small class="date" style="color: #333;">Le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }}</small>
-                <img src="{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
+                <small class="date" style="color: #333;">Le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }}
+                                                        par <span class="author">{{ article.author }}<span></small>
+                <img src="/assets/blog/images/{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ article.title }}</h5>
                     <a href="{{ path('show', {'id':article.id}) }}" class="btn btn-primary">En savoir plus</a>
