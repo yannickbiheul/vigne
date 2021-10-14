@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Amis de la Vigne | {{ article.title }}{% endblock %}
+
+{% block body %}
+
+<div class="container justify-content-center">
+
+    <h1 class="text-center" style="margin: 20px 0;">{{ article.title }}</h1>
+
+    <div class="row justify-content-center">
+        <div class="img-fluid col-md-6">
+            <img src="{{ article.image }}" alt="{{ article.title }}">
+        </div>
+    </div>
+
+    <div class="content row justify-content-center">
+        <p class="date" style="margin-top: 40px;">Le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }}</p>
+
+        <p class="content">{{ article.content }}</p>
+    </div>
+
+</div>
+
+{% endblock %}
