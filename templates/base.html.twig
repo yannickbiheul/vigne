@@ -22,7 +22,6 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav">
-						<a class="nav-link" href="#">Articles</a>
 						<a class="nav-link" href="#">Photos</a>
                         <a class="nav-link" href="#">À propos</a>
                         <a class="nav-link" href="#">Contact</a>
@@ -32,7 +31,9 @@
 			</div>
 		</nav>
         
-        {% block body %}{% endblock %}
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
 
 
     </body>
