@@ -3,14 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -20,29 +22,39 @@ class User
     private $id;
 
     /**
+     * @Assert\Length(min=2, max=50)
      * @ORM\Column(type="string", length=255)
      */
     private $username;
 
     /**
+     * @Assert\Length(min=3, max=50)
      * @ORM\Column(type="string", length=255)
      */
     private $firstname;
 
     /**
+     * @Assert\Length(min=3, max=50)
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
 
     /**
+     * @Assert\Email(message="L'email entré n'est pas valide.")
      * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
+     * @Assert\Length(min=6, max=50)
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Les deux mots de passe doivent être identiques !")
+     */
+    private $passwordConfirm;
 
     /**
      * @ORM\Column(type="datetime")
@@ -54,7 +66,6 @@ class User
      */
     private $articles;
 
-    private $passwordConfirm;
 
     public function __construct()
     {
@@ -184,5 +195,25 @@ class User
         }
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        // Pas touche pour l'instant
+    }
+
+    public function eraseCredentials()
+    {
+        // Pas touche pour l'instant
+    }
+
+    public function getUserIdentifier()
+    {
+        // Pas touche pour l'instant
     }
 }
