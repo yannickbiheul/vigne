@@ -8,9 +8,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @uniqueEntity(
+ * fields = {"email"},
+ * message = "Cet email existe déjà !"
+ * )
  */
 class User implements UserInterface
 {
@@ -214,6 +219,7 @@ class User implements UserInterface
 
     public function getUserIdentifier()
     {
-        // Pas touche pour l'instant
+        $userIdentifier = $this->email;
+        return $userIdentifier;
     }
 }
