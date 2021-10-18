@@ -27,7 +27,14 @@
                         <a class="nav-link" href="#">Contact</a>
 					</div>
 				</div>
-                <a href="{{ path('security_register')}}" class="btn btn-success">Inscription</a>
+
+                {% if app.user %}
+                    <a href="{{ path('security_logout')}}" class="btn btn-danger m-1">Deconnexion</a>
+                {% else %}
+                    <a href="{{ path('security_register')}}" class="btn btn-success m-1">Inscription</a>
+                    <a href="{{ path('security_login')}}" class="btn btn-success m-1">Connexion</a>
+                {% endif %}
+                
 			</div>
 		</nav>
         
